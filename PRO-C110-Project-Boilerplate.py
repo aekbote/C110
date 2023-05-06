@@ -32,7 +32,7 @@ while True:
 		
 		# expand the dimensions
 		test_image = np.array(img, dtype=np.float32)
-    	test_image = np.expand_dims(test_image, axis=0)
+    		test_image = np.expand_dims(test_image, axis=0)
 		
 		# normalize it before feeding to the model
 		normalised_image = test_image/255.0
