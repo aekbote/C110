@@ -31,17 +31,23 @@ while True:
 		img = cv2.resize(frame,(224,224))
 		
 		# expand the dimensions
-		test_image = np.array(img, dtype=np.float32)
-    		test_image = np.expand_dims(test_image, axis=0)
+		test_image = np.array(img, dtype=np.float32) 
+		test_image = np.expand_dims(test_image, axis=0)
 		
 		# normalize it before feeding to the model
 		normalised_image = test_image/255.0
 		
-		# get predictions from the model
-		prediction = model.predict(normalised_image)
-		
-		print("Prediction : ", prediction)
-		
+	
+		# Getting predictions from the model 
+		predictions = model.predict(img) 
+
+		# Converting the data in the array to percentage confidence 
+		rock = int(predictions[0][0]*100) 
+		paper = int(predictions[0][1]*100) 
+		scissor = int(predictions[0][2]*100)
+
+		# printing percentage confidence 
+		print(f"Rock: {rock} %, Paper: {paper} %, Scissor: {scissor} %")
 		
 		# displaying the frames captured
 		cv2.imshow('feed' , frame)
